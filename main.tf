@@ -43,7 +43,7 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-resource "aws_instance" "Demo" {
+resource "aws_instance" "demo" {
   ami = "ami-0912f71e06545ad88"
   instance_type = "t2.micro"
   key_name = "${var.key_name}"
@@ -66,9 +66,9 @@ resource "aws_instance" "Demo" {
 }
 
 output "aws_instance_public_dns" {
-  value = "${aws_instance.test.public_dns}"
+  value = "${aws_instance.demo.public_dns}"
 }
 
 output "aws_instance_public_ip" {
-  value = "${aws_instance.test.public_ip}"
+  value = "${aws_instance.demo.public_ip}"
 }
