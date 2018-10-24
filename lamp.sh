@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo yum -y install httpd mysql-server mysql-devel php php-mysql php-fpm;
 sudo yum -y install epel-release phpmyadmin rpm-build redhat-rpm-config;
+sudo yum -y install httpd mysql-server mysql-devel php php-mysql php-fpm;
 sudo yum -y install mysql-community-release-el7-5.noarch.rpm proj;
 sudo yum -y install tinyxml libzip mysql-workbench-community;
 sudo chmod 777 -R /var/www/;
