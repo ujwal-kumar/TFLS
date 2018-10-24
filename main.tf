@@ -55,6 +55,7 @@ resource "aws_instance" "demo" {
   }
   provisioner "remote-exec" {
     inline=[
+    "sleep 300"
     "chmod +x /tmp/lamp.sh",
     "sudo /tmp/lamp.sh"
      ]
