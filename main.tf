@@ -44,7 +44,7 @@ resource "aws_security_group" "allow_all" {
 }
 
 resource "aws_instance" "demo" {
-  ami = "ami-03da55fda5eb59dc5"
+  ami = "ami-06bcd1131b2f55803"
   instance_type = "t2.micro"
   key_name = "${var.key_name}"
   security_groups = ["aws_sg"]
