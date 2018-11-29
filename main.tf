@@ -56,11 +56,15 @@ resource "aws_instance" "demo" {
   security_groups = ["aws_sg"]
   
   provisioner "file" {
-  source="lamp.yml"
-  destination="/tmp/lamp.yml"
+  source="lamp.sh"
+  destination="/tmp/lamp.sh"
   }
-  provisioner "local-exec" {
-     command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key awsTerra -i '${aws_instance.demo.public_ip}' lamp.yml "
+  provisioner "remote-exec" {
+     inline=[
+    "sleep 300",
+    "chmod +x /tmp/lamp.sh",
+    "sudo /tmp/lamp.sh"
+     ]
   }
   connection {
   user="${var.instance_username}"
