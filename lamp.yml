@@ -1,0 +1,48 @@
+---
+- name: Install LAMP stack
+  hosts: all
+  remote_user: ec2-user
+  become_method: sudo
+  become: true
+  vars:
+   - dbuser: demouser
+   - dbpassword: password
+
+  tasks:
+   - name: Stop firewalld
+     service:
+      name: firewalld
+      state: stopped
+     ignore_errors: true
+     
+   - name: Install LAMP packages
+     yum: name={{ item }} state=latest
+     with_items:
+      - httpd
+      - php
+      - php-mysql
+      - mariadb
+      - mariadb-server
+      - MySQL-python
+
+   - name: Start all LAMP packages
+     service: name={{ item }} state=started enabled=yes
+     with_items:
+      - httpd
+      - mariadb
+
+   - name: Create index.php page
+     template: src=index.php.j2 dest=/var/www/html/index.php
+
+   - name: Create DB
+     mysql_db: name={{ item }} state=present
+     with_items:
+      - ansible_db01
+      - ansible_db02
+
+   - name: create application user
+     mysql_user: name={{ dbuser }} password={{ dbpassword }} priv=*.*:ALL state=present
+
+   - name: httpd_restart
+     service: name=httpd state=restarted enabled=yes
+
