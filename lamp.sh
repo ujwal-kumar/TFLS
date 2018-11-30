@@ -6,7 +6,7 @@ sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm;
 sudo yum -y install httpd mysql-server mysql-devel php php-mysql php-fpm unzip;
 #sudo yum -y install tinyxml libzip mysql-workbench-community;
 sudo chmod 777 -R /var/www/;
-sudo cp /tmp/Demo.zip /var/www/html/;
+sudo cp /tmp/Demo.zip /var/www/html;
 sudo unzip /var/www/html/Demo.zip;
 sudo rm -rf /var/www/html/Demo.zip;
 sudo service mysqld restart;
