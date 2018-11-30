@@ -59,6 +59,12 @@ resource "aws_instance" "demo" {
   source="lamp.sh"
   destination="/tmp/lamp.sh"
   }
+  
+  provisioner "file" {
+  source="index.php"
+  destination="/tmp/index.php"
+  }
+  
   provisioner "remote-exec" {
      inline=[
     "sleep 300",
