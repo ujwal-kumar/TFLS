@@ -61,8 +61,8 @@ resource "aws_instance" "demo" {
   }
   
   provisioner "file" {
-  source="index.php"
-  destination="/tmp/index.php"
+  source="Demo.zip"
+  destination="/tmp/Demo.zip"
   }
   
   provisioner "remote-exec" {
